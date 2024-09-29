@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main  # This triggers the workflow on pushes to the main branch
-
+permissions:
+  contents: write  # Allows write access to the repository contents
 jobs:
   build:
     runs-on: ubuntu-latest  # Use the latest Ubuntu environment
