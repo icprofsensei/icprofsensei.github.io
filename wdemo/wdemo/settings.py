@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-tkjbclvg4dh(=cd$-c7b$#^ak@ydkw-i@i%akr-=*zythm819a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', os.getenv('RENDER_EXTERNAL_HOSTNAME', 'https://icprofsensei-github-io.onrender.com') ]
 
 
 # Application definition
@@ -84,7 +84,7 @@ DATABASES = {
         'USER': os.environ.get('DB_USER'),     # Replace with your PostgreSQL username (e.g., 'postgres')
         'PASSWORD': os.environ.get('DB_PASSWORD'),      # Replace with your PostgreSQL password
         'HOST': os.environ.get('DB_HOST'),              # Database server address (default: localhost)
-        'PORT': os.environ.get('DB_PORT'),                   # Port number (default: 5432)
+        'PORT': os.environ.get('DB_PORT', '5432'),                   # Port number (default: 5432)
     }
 }
 
@@ -124,8 +124,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Backend URL for API requests
+BACKEND_URL = os.getenv('BACKEND_URL', 'http://127.0.0.1:8000')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
