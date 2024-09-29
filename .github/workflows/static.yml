@@ -1,0 +1,36 @@
+name: Deploy Django Static Files
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'  # Change to your Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Adjust this if your requirements file is named differently
+
+      - name: Collect static files
+        run: |
+          python manage.py collectstatic --noinput  # Collect static files into STATIC_ROOT
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./polls/templates/polls  # Change this to your STATIC_ROOT directory
+          publish_branch: gh-pages  # Change this if you are using a different branch
+
