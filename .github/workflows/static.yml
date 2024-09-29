@@ -3,16 +3,18 @@ name: Deploy Django Static Files
 on:
   push:
     branches:
-      - main  # This triggers the workflow on pushes to the main branch
+      - main  # Change this to your default branch
+
 permissions:
-  contents: write  # Allows write access to the repository contents
+  contents: write  # Grant permission to write to the repository
+
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu environment
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  # Checkout the repository code
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -32,6 +34,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
-          publish_dir: ./staticfiles  # Change this to your STATIC_ROOT directory where collectstatic outputs files
+          publish_dir: ./staticfiles  # Change this to your STATIC_ROOT directory
           publish_branch: gh-pages  # The branch to which files will be published
+
 
