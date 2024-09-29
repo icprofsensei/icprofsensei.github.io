@@ -3,15 +3,15 @@
 <head>
 <title>Online Poller + Data Demonstrator + git test2</title>
 {% load static %}
-
 <link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    
+</head>
+<body>
     <header>
         <div class="container">
             <h1>Online Poller + Data Demonstrator</h1>
         </div>
     </header>
-</head>
-<body>
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
