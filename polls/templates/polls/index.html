@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
 <title>Online Poller + Data Demonstrator + git test2</title>
-<header>
-    <div class="container">
-        <h1>Online Poller + Data Demonstrator</h1>
-    </div>
-</header>
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    <header>
+        <div class="container">
+            <h1>Online Poller + Data Demonstrator</h1>
+        </div>
+    </header>
+</head>
 <body>
 {% if latest_question_list %}
     <ul>
