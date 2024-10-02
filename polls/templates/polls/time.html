@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Online Poller + Data Demonstrator + git test2</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'polls/style.css' %}">
+    
+</head>
+<body style="background-color: white; color: green;">
+    <header>
+        <div class="container">
+            <h1>Online Poller + Data Demonstrator</h1>
+        </div>
+    </header>
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+
+</body>
