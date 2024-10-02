@@ -1,6 +1,15 @@
 from .base import * 
+
 DEBUG = False
 ALLOWED_HOSTS = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Uncomment this line only if you have additional static files in a global directory.
+]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 DATABASES = {
     'default': dj_database_url.config(
         default = os.environ.get('DATABASE_URL', 'postgresql://test_u5d2_user:VTttJP9fL58rFLCD0cJ2Toz0jEkksrBv@dpg-crsidfggph6c738ttku0-a.oregon-postgres.render.com/test_u5d2')
@@ -51,12 +60,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Uncomment this line only if you have additional static files in a global directory.
-]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
