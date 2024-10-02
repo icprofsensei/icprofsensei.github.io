@@ -79,3 +79,4 @@ CORS_ALLOW_CREDENTIALS = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 
+STATIC_URL = '/static/'
