@@ -4,9 +4,9 @@ DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.getenv('RENDER_EXTERNAL_HOSTNAME')]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Uncomment this line only if you have additional static files in a global directory.
+    os.path.join(BASE_DIR, 'staticfiles'), # Uncomment this line only if you have additional static files in a global directory.
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
