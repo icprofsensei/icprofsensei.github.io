@@ -11,6 +11,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      myproject: prod  # Set the environment variable for production
 
     steps:
       - name: Checkout code
@@ -34,7 +36,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
-          publish_dir: ./staticfiles  # Change this to your STATIC_ROOT directory
+          publish_dir: ./static  # Change this to your STATIC_ROOT directory
           publish_branch: gh-pages  # The branch to which files will be published
-
 
