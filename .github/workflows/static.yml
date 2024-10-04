@@ -11,8 +11,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     env:
-      myproject: prod  # Set the environment variable for production
+      myproject: prod  # Set the environment variable for the project
 
     steps:
       - name: Checkout code
@@ -28,6 +29,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt  # Install the required Python packages
 
+      - name: Create staticfiles directory
+        run: mkdir -p staticfiles  # Create the directory for static files if it doesn't exist
+
       - name: Collect static files
         run: |
           python manage.py collectstatic --noinput  # Collect static files into STATIC_ROOT
@@ -36,6 +40,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
-          publish_dir: ./static  # Change this to your STATIC_ROOT directory
+          publish_dir: ./staticfiles  # The directory where collected static files are located
           publish_branch: gh-pages  # The branch to which files will be published
 
