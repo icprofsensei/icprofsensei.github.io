@@ -20,3 +20,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# Optional: Local settings for CORS, if needed
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8000',
+]
+CORS_ALLOW_CREDENTIALS = True
