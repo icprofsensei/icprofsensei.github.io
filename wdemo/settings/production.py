@@ -1,10 +1,11 @@
 from .base import * 
 
+
 DEBUG = False
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join('staticfiles', 'polls')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
