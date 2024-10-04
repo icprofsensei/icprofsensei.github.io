@@ -7,10 +7,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', os.getenv('RENDER_EXTERNAL_HOSTNAME')
 # Define static files settings
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Set the STATIC_ROOT directory here
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'polls', 'static'),  # Include your app's static files
-]
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
