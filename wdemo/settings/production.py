@@ -5,7 +5,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
 
 # Define static files settings
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
