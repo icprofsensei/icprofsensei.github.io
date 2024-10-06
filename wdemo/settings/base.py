@@ -33,12 +33,15 @@ SECRET_KEY = 'django-insecure-tkjbclvg4dh(=cd$-c7b$#^ak@ydkw-i@i%akr-=*zythm819a
 INSTALLED_APPS = [
     'corsheaders',
     'polls.apps.PollsConfig',
+    'register.apps.RegisterConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "crispy_forms",
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -80,4 +83,5 @@ CORS_ALLOW_CREDENTIALS = True
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
