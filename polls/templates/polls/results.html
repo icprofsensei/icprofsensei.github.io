@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block title %}Results{% endblock %}
+{% block content %}
 <h1>{{ question.question_text }}</h1>
 <ul>
 {% for choice in question.choice_set.all %}
@@ -10,3 +13,4 @@
 <div>
     <a href="{% url 'polls:breakdown' question.id %}">Votes Breakdown</a>
 </div>
+{% endblock %}

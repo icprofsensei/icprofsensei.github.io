@@ -22,6 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("polls/", include("polls.urls")),
     path("register/", v.register, name = "register"),
-    path('', homeviews.home, name = "home"),
-    path('', include("django.contrib.auth.urls")),
+    path("", homeviews.home, name = "home"),
+    path('', include("django.contrib.auth.urls")), #Automatic urls for login/logout etc
+    path("purpose/", homeviews.purpose, name = "purpose"),
 ]
+ 
