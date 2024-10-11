@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from register import views as v
+from register import views as register
+from ChoiceMaker import views as choice
 from . import views as homeviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("polls/", include("polls.urls")),
-    path("register/", v.register, name = "register"),
+    path("register/", register.register, name = "register"),
     path("", homeviews.home, name = "home"),
     path('', include("django.contrib.auth.urls")), #Automatic urls for login/logout etc
     path("purpose/", homeviews.purpose, name = "purpose"),
-]
- 
+    path("creator/", include("ChoiceMaker.urls")),]

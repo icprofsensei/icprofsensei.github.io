@@ -1,0 +1,36 @@
+* Ensure the navbar takes up full width */
+.navbar {
+    width: 100%;
+}
+
+/* Flexbox for the navigation list */
+.navbar-nav {
+    display: flex;                /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly */
+    width: 100%;                 /* Take full width */
+    padding: 0;                  /* Remove default padding */
+    margin: 0;                   /* Remove default margin */
+}
+
+/* Each nav item */
+.nav-item {
+    flex: 1;                     /* Each item grows equally */
+    text-align: center;          /* Center the text */
+}
+
+/* Ensure that the links take up full width of their containers */
+.nav-link {
+    display: block;
+    width: 100%;                 /* Full width for clickable area */
+    padding: 10px;               /* Adjust padding as needed */
+    color: white;                /* Text color */
+    text-decoration: none;       /* Remove underline */
+    white-space: nowrap;         /* Prevent text from wrapping */
+}
+
+/* Optional: Responsive design */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}

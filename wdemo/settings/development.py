@@ -3,8 +3,7 @@ SECURE_SSL_REDIRECT = False  # Do not redirect to HTTPS
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join('staticfiles', 'polls')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Use SQLite for development
 DATABASES = {
     'default': {
