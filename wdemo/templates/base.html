@@ -17,22 +17,26 @@
                         <a class="nav-link" href="/"><i class="fa fa-fw fa-home"></i>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/creator">Create Party</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/poller">Create Poll</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/purpose">Purpose</a>
                     </li>
                     {% if not user.is_authenticated %}
+                    
                     <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{% url 'register:register' %}">Sign Up</a></li>
                     {% endif %}
         
                     <!-- Show these links only when the user is logged in -->
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/creator">Create Party</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/poller">Create Poll</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="/polls">Vote</a></li>
+
                     <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                    
                     <li class="nav-item">
                         <!-- Form for logout -->
                         <form method="POST" action="{% url 'logout' %}">
