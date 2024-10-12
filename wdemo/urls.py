@@ -22,8 +22,9 @@ from . import views as homeviews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("polls/", include("polls.urls")),
-    path("register/", register.register, name = "register"),
+    path("register/", include("register.urls")),
     path("", homeviews.home, name = "home"),
     path('', include("django.contrib.auth.urls")), #Automatic urls for login/logout etc
     path("purpose/", homeviews.purpose, name = "purpose"),
-    path("creator/", include("ChoiceMaker.urls")),]
+    path("creator/", include("ChoiceMaker.urls")),
+    path("poller/", include("QuestionMaker.urls")),]

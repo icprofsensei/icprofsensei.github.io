@@ -5,7 +5,7 @@ Login Here
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form method = "post" class=""from-group">
+    <form method = "post" class="form-group">
         {% csrf_token %}
         {{form|crispy}}
         

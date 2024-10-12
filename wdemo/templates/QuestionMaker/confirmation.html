@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{% extends 'base.html' %}
+{% block title %}Confirmation{% endblock %}
+{% block content %}
+<h1>Your new question has been created. Voters may now access it</h1>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+<body style="background-color: white; color: blue;">
+</body>
+{% endblock %}
