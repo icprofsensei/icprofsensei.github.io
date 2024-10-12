@@ -36,14 +36,14 @@
 }
 
 .form-group {
-    margin-top: 100px;
+    margin-top: 20px;
     margin-bottom: 20px;  /* Adjust the value as needed for more/less space */
 }
 
 button[type="submit"] {
-    margin-top: 100px;  /* Adjust the value for spacing above the button */
+    margin-top: 20px;  /* Adjust the value for spacing above the button */
 }
 
 input.form-control {
-    padding: 100px;  /* Adjust as needed */
+    padding: 20px;  /* Adjust as needed */
 }
