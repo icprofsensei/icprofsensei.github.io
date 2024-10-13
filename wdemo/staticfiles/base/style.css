@@ -33,6 +33,9 @@
     .navbar-nav {
         flex-direction: column; /* Stack items vertically on smaller screens */
     }
+    .sidenav {
+        display: none; /* Hide sidenav on smaller screens */
+    }
 }
 
 .form-group {
@@ -75,4 +78,11 @@ input.form-control {
     color: #f1f1f1;
   }
 
-  
+  .main-content {
+    flex: 1; /* Allow the main content to take remaining space */
+    padding: 20px; /* Add padding to the main content */
+}
+.container {
+    display: flex; /* Make the container a flex container */
+    flex: 1; /* Allow it to grow to fill available space */
+}
