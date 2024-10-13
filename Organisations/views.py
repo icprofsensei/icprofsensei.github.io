@@ -12,7 +12,7 @@ class BaseProtectedView(LoginRequiredMixin):
 
 class OrgLanderView(BaseProtectedView, generic.ListView):
     model = Organisation
-    template_name = "OrganisationMaker/organisationlandingpage.html"
+    template_name = "OrganisationMaker/Organisationlandingpage.html"
 class OrgConfirmationView(generic.ListView):
     model = Organisation
     template_name = "OrganisationMaker/confirmation.html"
