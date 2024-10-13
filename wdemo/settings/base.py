@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'polls.apps.PollsConfig',
     'register.apps.RegisterConfig',
+    'Organisations.apps.OrganisationsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +89,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+LOGIN_URL = "/login"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"

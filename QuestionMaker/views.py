@@ -6,8 +6,12 @@ from django.views import generic
 from .forms import QuestionForm
 from polls.models import Choice, Question
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class QuestionLanderView(generic.ListView):
+class BaseProtectedView(LoginRequiredMixin):
+    login_url = '/login/'  # Redirect to this URL if not authenticated
+
+class QuestionLanderView(BaseProtectedView, generic.ListView):
     context_object_name = "question_list"
     model = Question
     template_name = "QuestionMaker/questionlandingpage.html"
@@ -23,7 +27,7 @@ def add_question(request):
             question = form.save(commit=False)
             question.pub_date = timezone.now()  # Set the current time as the publish date
             question.save()
-            return redirect('QuestionMaker:questionconfirmer')  # Redirect to the question landing page
+            return redirect('QuestionMaker:questionconfirmer')  # Redirect to the question confirmation page
     else:
         form = QuestionForm()  # Display an empty form if the request is GET
 

@@ -6,6 +6,11 @@ from django.views import generic
 
 from polls.models import Choice, Question
 from django.utils import timezone
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+class BaseProtectedView(LoginRequiredMixin):
+    login_url = '/login/'  # Redirect to this URL if not authenticated
+
 class IndexChoiceView(generic.ListView):
     template_name = "ChoiceMaker/openpolls.html"
     context_object_name = "latest_question_list"
@@ -19,7 +24,7 @@ class IndexChoiceView(generic.ListView):
             :5
     ]
 
-class ChoiceMakerView(generic.DetailView):
+class ChoiceMakerView(BaseProtectedView, generic.DetailView):
     model = Question
     template_name = "ChoiceMaker/partymaker.html"
 

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Organisation{% endblock %}
+
+{% block content %}
+  <h1>Add a New Organisation</h1>
+  
+  <a href="{% url 'Organisations:organisationmaker' %}">
+    <button type="button">Create New Organisation</button>
+  </a>
+  
+{% endblock %}

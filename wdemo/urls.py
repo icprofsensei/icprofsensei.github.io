@@ -27,4 +27,5 @@ urlpatterns = [
     path('', include("django.contrib.auth.urls")), #Automatic urls for login/logout etc
     path("purpose/", homeviews.purpose, name = "purpose"),
     path("creator/", include("ChoiceMaker.urls")),
-    path("poller/", include("QuestionMaker.urls")),]
+    path("poller/", include("QuestionMaker.urls")),
+    path("organisation/", include("Organisations.urls")),]

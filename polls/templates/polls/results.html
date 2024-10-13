@@ -8,7 +8,11 @@
 {% endfor %}
 </ul>
 <div>
-    <a href="{% url 'polls:detail' question.id %}">Vote again?</a>
+    <!-- Form to trigger the redo vote action -->
+    <form method="POST" action="{% url 'polls:redo_vote' question.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-warning">Redo vote?</button>
+    </form>
 </div>
 <div>
     <a href="{% url 'polls:breakdown' question.id %}">Votes Breakdown</a>
