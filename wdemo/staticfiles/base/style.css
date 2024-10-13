@@ -65,7 +65,7 @@ input.form-control {
   }
   
   /* The navigation menu links */
-  .sidenav a {
+.sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
@@ -74,11 +74,11 @@ input.form-control {
   }
   
   /* When you mouse over the navigation links, change their color */
-  .sidenav a:hover {
+.sidenav a:hover {
     color: #f1f1f1;
   }
 
-  .main-content {
+.main-content {
     flex: 1; /* Allow the main content to take remaining space */
     padding: 20px; /* Add padding to the main content */
 }
