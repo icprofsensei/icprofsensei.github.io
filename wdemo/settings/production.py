@@ -1,7 +1,7 @@
 from .base import * 
 
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
