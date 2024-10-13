@@ -31,7 +31,10 @@ jobs:
 
       - name: Create staticfiles directory
         run: mkdir -p staticfiles  # Create the directory for static files if it doesn't exist
-
+        
+      - name: Run database migrations
+        run: |
+          python manage.py migrate --noinput  # Run migrations
       - name: Collect static files
         run: |
           python manage.py collectstatic --noinput  # Collect static files into STATIC_ROOT
