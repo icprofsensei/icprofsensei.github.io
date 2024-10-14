@@ -17,7 +17,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),  # This is the shared staticfiles directory
+    os.path.join(BASE_DIR, 'static'),  # This is the shared staticfiles directory
 ]
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
