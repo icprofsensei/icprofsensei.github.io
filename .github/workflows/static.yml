@@ -34,6 +34,7 @@ jobs:
         
       - name: Run database migrations
         run: |
+          python manage.py makemigrations --noinput
           python manage.py migrate --noinput  # Run migrations
       - name: Collect static files
         run: |
