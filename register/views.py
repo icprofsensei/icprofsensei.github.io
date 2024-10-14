@@ -10,9 +10,13 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            
+            organisation = form.cleaned_data.get('organisation')
             # Check if UserProfile already exists or create a new one
-            UserProfile.objects.get_or_create(user=user)
+            user_profile, created = UserProfile.objects.get_or_create(user=user)
+            if organisation:
+                user_profile.organisation = organisation
+                user_profile.save()
+
             
             login(request, user)
             messages.success(request, "Account created successfully!")
@@ -40,8 +44,13 @@ def custom_login(request):
                 # Store the selected organisation in the session if available
                 if organisation:
                     request.session['organisation_id'] = organisation.id
+
+                    # Update the user's profile with the selected organisation
+                    user_profile = UserProfile.objects.get(user=user)
+                    user_profile.organisation = organisation
+                    user_profile.save()
                 else:
-                    request.session['organisation_id'] = None  # Clear if no organisation selected
+                    request.session['organisation_id'] = None
 
                 return redirect('/')  # Redirect after login
             else:
