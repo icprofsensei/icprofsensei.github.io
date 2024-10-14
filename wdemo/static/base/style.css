@@ -86,7 +86,7 @@ input.form-control {
 /* Ensure the content starts after the sidebar */
 .main-content {
     margin-top: 56px; /* Below the fixed navbar */
-    margin-left: 300px; /* Adjust based on the max-width of the sidebar */
+    margin-left: 30px; /* Adjust based on the max-width of the sidebar */
     padding: 20px;
     overflow-y: auto;
 }
