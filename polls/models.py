@@ -9,7 +9,7 @@ from Organisations.models import Organisation
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published")
-    #organisation = models.ForeignKey(Organisation, on_delete=models.CASCADE,null=True, blank=True )
+    organisation = models.ForeignKey(Organisation, on_delete=models.SET_NULL, null=True, blank=True)  # Optional: Only for a specific organization
     def __str__(self):
         return self.question_text
     @admin.display(
@@ -24,6 +24,7 @@ class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete= models.CASCADE)
     choice_text = models.CharField(max_length = 200)
     votes = models.IntegerField(default=0)
+    manifesto_text = models.TextField(null=True, blank=True)  # Optional field for manifestos
     def __str__(self):
         return self.choice_text
     
@@ -37,3 +38,4 @@ class Vote(models.Model):
     def __str__(self):
         return f"{self.user.username} voted on {self.question}"
     # We do the above to define how the model would be represented as a string. 
+

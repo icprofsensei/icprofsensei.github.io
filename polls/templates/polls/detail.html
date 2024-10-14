@@ -5,14 +5,26 @@
     {% if user_has_voted %}
         <p>You have already voted on this question.</p>
     {% else %}
-        <form action="{% url 'polls:vote' question.id %}" method="post">
-            {% csrf_token %}
-            {% for choice in question.choice_set.all %}
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+            <div>
                 <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-            {% endfor %}
-            <button type="submit">Vote</button>
-        </form>
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                
+                <select onchange="this.nextElementSibling.style.display = this.value === 'hide' ? 'block' : 'none'">
+                    <option value="show">Hide Manifesto</option>
+                    <option value="hide">Show Manifesto</option>
+                    
+                </select>
+                
+                <div style="display: none;">
+                    <p>{{ choice.manifesto_text }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit">Vote</button>
+    </form>
     {% endif %}
 {% else %}
     <p>You need to <a href="{% url 'login' %}">login</a> to vote.</p>

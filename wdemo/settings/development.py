@@ -3,7 +3,10 @@ SECURE_SSL_REDIRECT = False  # Do not redirect to HTTPS
 DEBUG = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'staticfiles')]
+# Location where Django will collect static files in development
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # This points to your project static directory
+]
 # Use SQLite for development
 DATABASES = {
     'default': {

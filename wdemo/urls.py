@@ -23,9 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("polls/", include("polls.urls")),
     path("register/", include("register.urls")),
+    path("login/", register.custom_login, name='login'),
     path("", homeviews.home, name = "home"),
     path('', include("django.contrib.auth.urls")), #Automatic urls for login/logout etc
     path("purpose/", homeviews.purpose, name = "purpose"),
     path("creator/", include("ChoiceMaker.urls")),
     path("poller/", include("QuestionMaker.urls")),
-    path("organisation/", include("Organisations.urls")),]
+    path("organisation/", include("Organisations.urls")),
+    path("profile/", homeviews.profile, name = "profile")]

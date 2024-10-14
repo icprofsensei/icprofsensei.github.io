@@ -6,7 +6,13 @@
     <fieldset>
         <legend><h1>{{ question.question_text }}</h1></legend>
         {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <input type="text" id="pname" name="partyname" placeholder="Your party..">
+        <p><small>Party</small></p>
+        <!-- Input for the party name -->
+        <input type="text" id="pname" name="partyname" placeholder="Your party.." required>
+        <p><small>Manifesto</small></p>
+        <!-- Textarea for the manifesto -->
+        <textarea id="manifesto" name="manifesto" placeholder="Your manifesto.." rows="4" maxlength="1500" required></textarea>
+        <p><small>Max 250 words</small></p>
     </fieldset>
     <input type="submit" value="Add">
 </form>

@@ -5,13 +5,10 @@ Login Here
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <form method = "post" class="form-group">
-        {% csrf_token %}
-        {{form|crispy}}
-        
-        <button type= "submit" class="btn btn-success">Login</button>
-        <div>
-        <p>Don't have an account? Create one <a href="/register">here</a></p>
-        </div>
-    </form>
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    
+    <button type="submit">Login</button>
+</form>
 {% endblock %}

@@ -35,7 +35,7 @@ def add_choice(request, question_id):
     if request.method == "POST":
         # Get the input data from the form (field name is 'partyname')
         party_name = request.POST.get('partyname')
-
+        manifesto = request.POST.get('manifesto')
         if not party_name:
             # If no party name is provided, show an error
             return render(
@@ -48,7 +48,7 @@ def add_choice(request, question_id):
             )
 
         # Create a new Choice object and associate it with the question
-        choice = Choice(question=question, choice_text=party_name, votes=0)
+        choice = Choice(question=question, choice_text=party_name, manifesto_text = manifesto, votes=0)
         choice.save()
 
         # Redirect to the same page or another page, e.g., the question detail view

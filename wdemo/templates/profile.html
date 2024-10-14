@@ -1,0 +1,15 @@
+<!-- templates/organisation.html -->
+{% extends 'base.html' %}
+
+{% block title %}My Organisation{% endblock %}
+
+{% block content %}
+    <h1>Your Organisation</h1>
+    {% if organisation %}
+        <p>Organisation Name: {{ organisation.name }}</p>
+        <p>Organisation Created At: {{ organisation.created_at }}</p>
+        <!-- Add more fields as necessary -->
+    {% else %}
+        <p>You are not associated with any organisation.</p>
+    {% endif %}
+{% endblock %}

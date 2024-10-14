@@ -1,0 +1,98 @@
+/* Ensure the navbar takes up full width */
+.navbar {
+    width: 100%;
+}
+
+/* Flexbox for the navigation list */
+.navbar-nav {
+    display: flex;                /* Use flexbox for layout */
+    justify-content: space-around; /* Space items evenly */
+    width: 100%;                 /* Take full width */
+    padding: 0;                  /* Remove default padding */
+    margin: 0;                   /* Remove default margin */
+}
+
+/* Each nav item */
+.nav-item {
+    flex: 1;                     /* Each item grows equally */
+    text-align: center;          /* Center the text */
+}
+
+/* Ensure that the links take up full width of their containers */
+.nav-link {
+    display: block;
+    width: 100%;                 /* Full width for clickable area */
+    padding: 10px;               /* Adjust padding as needed */
+    color: white;                /* Text color */
+    text-decoration: none;       /* Remove underline */
+    white-space: nowrap;         /* Prevent text from wrapping */
+}
+
+/* Optional: Responsive design */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+    .sidenav {
+        display: none; /* Hide sidenav on smaller screens */
+    }
+}
+
+.form-group {
+    margin-top: 20px;
+    margin-bottom: 20px;  /* Adjust the value as needed for more/less space */
+}
+
+button[type="submit"] {
+    margin-top: 20px;  /* Adjust the value for spacing above the button */
+}
+
+input.form-control {
+    padding: 20px;  /* Adjust as needed */
+}
+
+
+  /* Make the navbar fixed to the top */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* Sidebar styling */
+.sidenav {
+    position: fixed;
+    top: 56px; /* Adjust based on the height of the navbar */
+    left: 0;
+    padding: 15px;
+    background-color: #f8f9fa; /* Light gray background for sidebar */
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto;
+    white-space: nowrap; /* Prevents text wrapping */
+    width: auto; /* Let the width automatically adjust based on the content */
+    max-width: 300px; /* Optional: set a maximum width for the sidebar */
+}
+
+/* Links inside the sidebar */
+.sidenav a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+/* Ensure the content starts after the sidebar */
+.main-content {
+    margin-top: 56px; /* Below the fixed navbar */
+    margin-left: 300px; /* Adjust based on the max-width of the sidebar */
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Wrapper to ensure the sidebar and main content don't overlap */
+.wrapper_inner {
+    margin-top: 56px; /* Adjust for the height of the fixed navbar */
+    padding-left: 300px; /* Same margin-left as main-content to ensure alignment */
+}
