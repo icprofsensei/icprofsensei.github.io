@@ -1,20 +1,18 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, CustomAuthenticationForm
 from django.contrib import messages
-from django.contrib.auth import login, logout, authenticate
-from Organisations.models import UserProfile
-# Create your views here.
+from django.contrib.auth import login, authenticate
+from Organisations.models import UserProfile, Organisation
 
-
-
+# Registration view for new users
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             
-            # Check if UserProfile already exists before creating
-            UserProfile.objects.get_or_create(user=user)  # This will not create a new profile if it already exists
+            # Check if UserProfile already exists or create a new one
+            UserProfile.objects.get_or_create(user=user)
             
             login(request, user)
             messages.success(request, "Account created successfully!")
@@ -24,6 +22,7 @@ def register(request):
 
     return render(request, "register/register.html", {"form": form})
 
+# Custom login view for users
 def custom_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
