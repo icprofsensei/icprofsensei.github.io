@@ -30,4 +30,5 @@ urlpatterns = [
     path("creator/", include("ChoiceMaker.urls")),
     path("poller/", include("QuestionMaker.urls")),
     path("organisation/", include("Organisations.urls")),
-    path("profile/", homeviews.profile, name = "profile")]
+    path("profile/", homeviews.profile, name = "profile"),
+    path("myorg/", include("MyOrg.urls")),]

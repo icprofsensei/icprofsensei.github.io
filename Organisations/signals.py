@@ -2,13 +2,17 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from .models import UserProfile
+from register.models import UserProfile
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=UserProfile)  # Change sender to UserProfile
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """Create or update the UserProfile whenever the User is saved."""
+    """
+    Signal that ensures a UserProfile is created for new users and updated if the user already exists.
+    """
+    # If the UserProfile is newly created
     if created:
-        UserProfile.objects.create(user=instance)
+        # Here you might want to perform any specific actions needed on UserProfile creation
+        print(f"UserProfile created for user: {instance.user.username}")
     else:
-        # Update the existing UserProfile if the User is updated
-        instance.profile.save()  # Ensure to use the related name defined in UserProfile
+        # Update logic can be added here if needed
+        print(f"UserProfile updated for user: {instance.user.username}")

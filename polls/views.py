@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Choice, Question, Vote
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from register.models import UserProfile
 class BaseProtectedView(LoginRequiredMixin):
     login_url = '/login/'  # Redirect to this URL if not authenticated
 class IndexView(BaseProtectedView, generic.ListView):
@@ -93,3 +93,4 @@ def redo_vote(request, question_id):
     
     # After removing the vote, redirect them back to the voting page for the question
     return HttpResponseRedirect(reverse("polls:vote", args=(question.id,)))
+

@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from Organisations.models import UserProfile
+from register.models import UserProfile
 from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, 'home.html')  # Renders the home.html template

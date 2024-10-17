@@ -1,0 +1,27 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<body>
+    <h1>My Organisation:</h1>
+    <p>This is where you can access all things related to your organisation group</p>
+    {% if organisation %}
+    <p>Organisation Name: {{ organisation.name }}</p>
+    <p>Created At: {{ organisation.created_at }}</p>
+    <!-- Add more organisation details if needed -->
+    {% else %}
+        <p>You are not associated with any organisation.</p>
+    {% endif %}
+    <p>Your organisation polls:</p>
+    <ul>
+        {% for question in orgquestions %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+        </ul>
+    
+    
+    <p>Organisation admins may access users <a href="/#">here</a></p>
+
+    {% endblock %}
+</body>

@@ -4,8 +4,11 @@
 {% block title %}My Organisation{% endblock %}
 
 {% block content %}
+<p>User Name: {{ user }}</p>
+<p>Organisation: {{ organisation }}</p>
     <h1>Your Organisation</h1>
     {% if organisation %}
+        
         <p>Organisation Name: {{ organisation.name }}</p>
         <p>Organisation Created At: {{ organisation.created_at }}</p>
         <!-- Add more fields as necessary -->

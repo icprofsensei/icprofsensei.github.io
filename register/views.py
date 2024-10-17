@@ -1,32 +1,51 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegisterForm, CustomAuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from Organisations.models import UserProfile, Organisation
+from Organisations.models import Organisation
+from .models import UserProfile
 
-# Registration view for new users
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            # Fetch the selected organisation from the cleaned data
             organisation = form.cleaned_data.get('organisation')
-            # Check if UserProfile already exists or create a new one
-            user_profile, created = UserProfile.objects.get_or_create(user=user)
-            if organisation:
-                user_profile.organisation = organisation
-                user_profile.save()
 
-            
+            # Create the user instance
+            user = form.save()
+
+            # Check if an organisation is selected
+            if organisation:
+                # Ensure the user enters the correct password for the organisation
+                organisation_password = form.cleaned_data.get('organisation_password')
+                if organisation.check_password(organisation_password):
+                    # Create the UserProfile associated with the user
+                    user_profile = UserProfile.objects.create(user=user, organisation=organisation)
+                    user_profile.save()
+                else:
+                    messages.error(request, "Incorrect organisation password.")
+                    return redirect("register")  # Redirect back to registration page
+            else:
+                # No organisation selected, create the UserProfile without an organisation
+                UserProfile.objects.create(user=user, organisation=None)
+
+            # Log the user in
             login(request, user)
-            messages.success(request, "Account created successfully!")
+            messages.success(request, f"Welcome {user.username}!")
+
+            # Store the selected organisation in the session if available
+            request.session['organisation_id'] = organisation.id if organisation else None
+            
             return redirect("/")  # Redirect to home or another page
     else:
         form = RegisterForm()
 
     return render(request, "register/register.html", {"form": form})
 
-# Custom login view for users
+
+
+
 def custom_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
@@ -38,21 +57,21 @@ def custom_login(request):
             # Authenticate user
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                messages.success(request, f"Welcome {user.username}!")
-                
-                # Store the selected organisation in the session if available
+                # Check organisation password if an organisation is selected
                 if organisation:
-                    request.session['organisation_id'] = organisation.id
-
-                    # Update the user's profile with the selected organisation
-                    user_profile = UserProfile.objects.get(user=user)
-                    user_profile.organisation = organisation
-                    user_profile.save()
+                    organisation_password = form.cleaned_data.get('organisation_password')
+                    if organisation.check_password(organisation_password):
+                        login(request, user)
+                        messages.success(request, f"Welcome {user.username}!")
+                        request.session['organisation_id'] = organisation.id
+                        return redirect('/')  # Redirect after login
+                    else:
+                        messages.error(request, "Incorrect organisation password.")
                 else:
+                    login(request, user)
+                    messages.success(request, f"Welcome {user.username}!")
                     request.session['organisation_id'] = None
-
-                return redirect('/')  # Redirect after login
+                    return redirect('/')  # Redirect after login
             else:
                 messages.error(request, "Invalid username or password.")
         else:
