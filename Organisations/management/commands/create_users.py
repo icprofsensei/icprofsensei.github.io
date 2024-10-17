@@ -1,7 +1,7 @@
 # your_app/management/commands/create_users_profile.py
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
-from Organisations.models import UserProfile  # Make sure to import your UserProfile model
+from register.models import UserProfile  # Make sure to import your UserProfile model
 
 class Command(BaseCommand):
     help = 'Get or create UserProfiles for all users'
