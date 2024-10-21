@@ -16,19 +16,22 @@ def organisation(request):
             return {
                 'username': user_profile.user,  # Get the user from the profile
                 'organisation': organisation,
-                'orgquestions': questions
+                'orgquestions': questions,
+                'date_of_birth': user_profile.date_of_birth,
             }
         except UserProfile.DoesNotExist:
             # Handle the case where UserProfile does not exist
             return {
                 'username': request.user,  # Still return the user
                 'organisation': None,
-                'orgquestions': None
+                'orgquestions': None,
+                'date_of_birth': None,
             }
     
     # Return None for both if the user is not authenticated
     return {
         'username': None,
         'organisation': None,
-        'orgquestions': None
+        'orgquestions': None,
+        'date_of_birth': None,
     }

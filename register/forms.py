@@ -11,5 +11,9 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2", "organisation", "organisation_password"]
+
+class ExtraInfoForm(forms.Form):
+    date_of_birth = forms.DateField(widget=forms.DateInput(attrs = {'type': 'date'}), required = True)
+    ethnicity = forms.ChoiceField(choices=UserProfile.ETHNICITY_CHOICES, required=True)  # Add ethnicity dropdown
 class CustomAuthenticationForm(AuthenticationForm):
     organisation = forms.ModelChoiceField(queryset=Organisation.objects.all(), required=False, empty_label="Select your organisation")

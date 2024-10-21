@@ -7,21 +7,26 @@
     <h1>My Organisation:</h1>
     <p>This is where you can access all things related to your organisation group</p>
     {% if organisation %}
-    <p>Organisation Name: {{ organisation.name }}</p>
-    <p>Created At: {{ organisation.created_at }}</p>
-    <!-- Add more organisation details if needed -->
+        <p>Organisation Name: {{ organisation.name }}</p>
+        <p>Created At: {{ organisation.created_at }}</p>
+        
+        <p>Your organisation polls:</p>
+        <ul>
+            {% for question in orgquestions %}
+                <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <p>Your organisation admin is --- {{ organisation.org_admin }}</p>
+
+        <!-- Link to the org admin page if user has an organisation -->
+        <p>Organisation admins may access users <a href="{% url 'MyOrg:orgadmin' %}">here</a></p>
+
     {% else %}
         <p>You are not associated with any organisation.</p>
+        
+        <!-- Optional: Provide a fallback action for users without an organisation -->
+        <p>Admins may access the organisation page, but you don't belong to any organisation yet.</p>
     {% endif %}
-    <p>Your organisation polls:</p>
-    <ul>
-        {% for question in orgquestions %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-        {% endfor %}
-        </ul>
-    
-    
-    <p>Organisation admins may access users <a href="/#">here</a></p>
-
     {% endblock %}
 </body>

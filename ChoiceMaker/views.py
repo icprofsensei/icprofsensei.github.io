@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
-
+from register.models import UserProfile
 from polls.models import Choice, Question
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -23,6 +23,26 @@ class IndexChoiceView(generic.ListView):
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[
             :5
     ]
+    def get_context_data(self, **kwargs):
+        """
+        Add the user's organisation and organisation-specific polls to the context data.
+        """
+        context = super().get_context_data(**kwargs)
+
+        # Fetch the user's profile and organisation
+        user_profile = get_object_or_404(UserProfile, user=self.request.user)
+        organisation = user_profile.organisation
+        
+        # Get all questions related to the user's organisation (if they have one)
+        if organisation:
+            orgquestions = Question.objects.filter(organisation=organisation, pub_date__lte=timezone.now()).order_by("-pub_date")
+        else:
+            orgquestions = None
+
+        # Add the organisation and org-specific questions to the context
+        context['organisation'] = organisation
+        context['orgquestions'] = orgquestions
+        return context
 
 class ChoiceMakerView(BaseProtectedView, generic.DetailView):
     model = Question

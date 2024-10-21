@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Remove User{% endblock %}
+{% block content %}
+<body>
+    <h1>Remove User from Organisation</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.user_to_remove.label_tag }} {{ form.user_to_remove }}
+        <button type="submit">Remove User</button>
+    </form>
+    <br>
+    <a href="{% url 'MyOrg:orgadmin' %}">Back to Admin Page</a>
+</body>
+{% endblock %}

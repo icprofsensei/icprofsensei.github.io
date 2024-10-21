@@ -1,0 +1,23 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<body>
+    <h1>Admin Page</h1>
+    <p>Let's see which users are in your organisation</p>
+    <p>Organisation Name: {{ organisation.name }}</p>
+    <p>Created At: {{ organisation.created_at }}</p>
+    <p>Admin: {{ organisation.org_admin }}</p>
+    <p> Users in group:</p>
+    <ul>
+        {% for user in users_in_group %}
+            <li>{{ user.username }}</li>
+        {% empty %}
+            <li>No users in this organisation.</li>
+        {% endfor %}
+    </ul>
+    <p> Edit members of your organisation <a href="{% url 'MyOrg:editusers' %}">here</a></p>
+    
+{% endblock %}
+</body>

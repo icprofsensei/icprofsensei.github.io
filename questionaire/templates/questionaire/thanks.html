@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Thank you for answering
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Thank You for Your Answers!</h1>
+    <p>Your responses are recorded as follows:</p>
+
+    <ul>
+        {% for answer in user_answers %}
+            <li>
+                <strong>Question:</strong> {{ answer.question.text }} <br>
+                <strong>Your Answer:</strong> {{ answer.selected_option.text }}
+            </li>
+        {% empty %}
+            <li>No answers recorded.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'home' %}">Return to Home</a> 
+{% endblock %}

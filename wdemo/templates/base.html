@@ -24,6 +24,7 @@
                     <a class="nav-link" href="/organisation"> Create Organisation <i class="fa-solid fa-user-group"></i></a>
                     <a class="nav-link" href="/polls"> Vote <i class="fa-solid fa-check-to-slot"></i></a>
                     <a class="nav-link" href="/myorg"> My Organisation <i class="fa-solid fa-sitemap"></i></a>
+                    
                 </div>
                 {% endif %}
             </div>
@@ -41,21 +42,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/purpose">Purpose <i class="fa-brands fa-envira"></i></a>
                         </li>
-
-                        <!-- Links for non-authenticated users -->
-                        {% if not user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login <i class="fa-solid fa-right-to-bracket"></i></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'register:register' %}">Sign Up <i class="fa-regular fa-clipboard"></i></a>
-                        </li>
-                        {% endif %}
-
-                        <!-- Links for authenticated users -->
                         {% if user.is_authenticated %}
+
                         <li class="nav-item">
-                            <a class="nav-link" href="/profile">Profile <i class="fa-solid fa-user"></i></a>
+                            <a class="nav-link" href="/questionaire">Main Questionaire <i class="fa-solid fa-clipboard-question"></i></a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/myorg/profile">Profile <i class="fa-solid fa-user"></i></a>
                         </li>
 
                         <li class="nav-item">
@@ -64,6 +58,13 @@
                                 {% csrf_token %}
                                 <a href="#" class="nav-link" onclick="this.closest('form').submit(); return false;">Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></a>
                             </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login <i class="fa-solid fa-right-to-bracket"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register:register_step_1' %}">Sign Up <i class="fa-regular fa-clipboard"></i></a>
                         </li>
                         {% endif %}
                     </ul>

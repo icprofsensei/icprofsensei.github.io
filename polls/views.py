@@ -11,6 +11,7 @@ from register.models import UserProfile
 class BaseProtectedView(LoginRequiredMixin):
     login_url = '/login/'  # Redirect to this URL if not authenticated
 class IndexView(BaseProtectedView, generic.ListView):
+    model = Question
     template_name = "polls/index.html"
     context_object_name = "latest_question_list"
 
@@ -22,6 +23,24 @@ class IndexView(BaseProtectedView, generic.ListView):
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")[
             :5
     ]
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Get the user's profile and associated organisation
+        user_profile = get_object_or_404(UserProfile, user=self.request.user)
+        
+        # Pass organisation to context
+        context['organisation'] = user_profile.organisation  
+        
+        # Check if the organisation exists and fetch related questions
+        if user_profile.organisation:
+            # Assuming you have a ForeignKey to Organisation in the Question model
+            organisation_questions = self.model.objects.filter(organisation=user_profile.organisation)
+            context['orgquestions'] = organisation_questions
+        else:
+            context['orgquestions'] = []
+        
+        return context
 
 class DetailView(generic.DetailView):
     model = Question
@@ -38,6 +57,7 @@ class ResultsView(generic.DetailView):
 class BreakdownView(generic.DetailView):
     model = Question
     template_name = "polls/breakdown.html"
+
 
 @login_required 
 def vote(request, question_id):

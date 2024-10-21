@@ -3,17 +3,36 @@
 {% block content %}
 <h1>Currently Open Polls</h1>
 <p>Click a poll below to create a new party</p>
+
+<!-- Display General Polls (without any organisation) -->
 {% if latest_question_list %}
     <ul>
     {% for question in latest_question_list %}
-            {% if question in orgquestions %}
-    <li><a href="{% url 'ChoiceMaker:makechoice' question.id %}">{{ question.question_text }}</a></li>
-            {% endif %}
+        {% if question.organisation == None %}
+            <li><a href="{% url 'ChoiceMaker:makechoice' question.id %}">{{ question.question_text }}</a></li>
+        {% endif %}
     {% endfor %}
     </ul>
-{% else %}
+{% endif %}
+
+<!-- Display Organisation-Specific Polls -->
+{% if organisation %}
+    <h1>For {{ organisation.name }} only</h1>
+    <ul>
+    {% if orgquestions %}
+        {% for question in orgquestions %}
+            <li><a href="{% url 'ChoiceMaker:makechoice' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+    {% else %}
+        <p>No organisation-specific polls are available.</p>
+    {% endif %}
+    </ul>
+{% endif %}
+
+{% if not latest_question_list and not orgquestions %}
     <p>No polls are available.</p>
 {% endif %}
+
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'register.apps.RegisterConfig',
     'Organisations.apps.OrganisationsConfig',
+    'questionaire.apps.QuestionaireConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

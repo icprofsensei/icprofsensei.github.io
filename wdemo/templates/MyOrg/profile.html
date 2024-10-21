@@ -1,0 +1,26 @@
+<!-- templates/organisation.html -->
+{% extends 'base.html' %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+    <h1>Your Profile</h1>
+    <p>User Name: {{ user }}</p> <!-- Ensure you access the username correctly -->
+    <p>Organisation: {{ organisation }}</p> <!-- Access organisation name directly -->
+    
+    {% if age %}
+        <p>Your Age: {{ age }}</p>
+    {% else %}
+        <p>Age not available.</p>
+    {% endif %}
+    
+    <p>Ethnicity: {{ ethnicity }}</p> <!-- Ensure ethnicity is accessed correctly -->
+
+    {% if organisation %}
+        <p>Organisation Name: {{ organisation.name }}</p>
+        <p>Organisation Created At: {{ organisation.created_at }}</p>
+        <!-- Add more fields as necessary -->
+    {% else %}
+        <p>You are not associated with any organisation.</p>
+    {% endif %}
+{% endblock %}

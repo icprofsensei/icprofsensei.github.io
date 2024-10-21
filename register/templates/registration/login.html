@@ -5,10 +5,14 @@ Login Here
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
+
+
+<!-- Login Form -->
 <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
     
     <button type="submit">Login</button>
 </form>
+
 {% endblock %}
