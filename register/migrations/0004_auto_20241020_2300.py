@@ -11,7 +11,7 @@ def set_default_eth(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('register', '0002_userprofile_date_of_birth'),  # Replace with your actual migration file name
+        ('register', '0003_userprofile_date_of_birth'),  # Replace with your actual migration file name
     ]
 
     operations = [
