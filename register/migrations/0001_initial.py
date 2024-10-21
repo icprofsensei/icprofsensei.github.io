@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('Organisations', '0004_delete_userprofile'),
+        ('Organisations', '0004_delete_userprofile'),  # Ensure this migration exists
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

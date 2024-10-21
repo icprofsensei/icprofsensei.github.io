@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('register', '0007_alter_userprofile_ethnicity'),
+        ('register', '0006_merge_20241020_2307'),
     ]
 
     operations = [
