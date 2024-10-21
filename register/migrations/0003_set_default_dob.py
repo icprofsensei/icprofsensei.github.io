@@ -8,7 +8,7 @@ def set_default_dob(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('register', '0002_userprofile_date_of_birth'),  # Ensure it points to the previous migration
+        ('register', '0001_initial'),  # Ensure it points to the previous migration
     ]
 
     operations = [
