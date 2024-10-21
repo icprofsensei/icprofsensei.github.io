@@ -6,7 +6,6 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('register', '0004_auto_20241020_2300'),
         ('register', '0005_userprofile_date_of_birth_userprofile_ethnicity'),
     ]
 

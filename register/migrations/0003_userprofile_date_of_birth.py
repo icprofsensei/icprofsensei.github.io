@@ -11,7 +11,7 @@ def set_default_dob(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('register', '0001_initial'),  # Replace with your actual migration file name
+        ('register', '0002_dob'),  # Replace with your actual migration file name
     ]
 
     operations = [
