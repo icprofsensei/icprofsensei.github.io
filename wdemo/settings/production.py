@@ -2,7 +2,7 @@ from .base import *
 
 
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', '13.48.45.57', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
+ALLOWED_HOSTS = ['https://icprofsensei-github-io.onrender.com', '13.48.45.57', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
