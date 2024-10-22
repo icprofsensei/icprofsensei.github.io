@@ -19,15 +19,16 @@ MIDDLEWARE = [
 ]
 
 
-DATABASES = 
-'default': {
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),     # Replace with the name of your PostgreSQL database
-        'USER': os.environ.get('DB_USER'),     # Replace with your PostgreSQL username (e.g., 'postgres')
-        'PASSWORD': os.environ.get('DB_PASSWORD'),      # Replace with your PostgreSQL password
-        'HOST': os.environ.get('DB_HOST'),              # Database server address (default: localhost)
-        'PORT': os.environ.get('DB_PORT', '5432'),                   # Port number (default: 5432)
+        'NAME': os.environ.get('DB_NAME'),                # Replace with the name of your PostgreSQL database
+        'USER': os.environ.get('DB_USER'),                # Replace with your PostgreSQL username (e.g., 'postgres')
+        'PASSWORD': os.environ.get('DB_PASSWORD'),        # Replace with your PostgreSQL password
+        'HOST': os.environ.get('DB_HOST', 'localhost'),   # Database server address (default: localhost)
+        'PORT': os.environ.get('DB_PORT', '5432'),        # Port number (default: 5432)
     }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
