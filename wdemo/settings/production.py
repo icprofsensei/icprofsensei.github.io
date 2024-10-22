@@ -1,5 +1,5 @@
 from .base import * 
-
+import os
 
 DEBUG = True
 ALLOWED_HOSTS = ['https://icprofsensei-github-io.onrender.com', '13.48.45.57', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
@@ -19,13 +19,7 @@ MIDDLEWARE = [
 ]
 
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default = os.environ.get('DATABASE_URL', 'postgresql://test_u5d2_user:VTttJP9fL58rFLCD0cJ2Toz0jEkksrBv@dpg-crsidfggph6c738ttku0-a.oregon-postgres.render.com/test_u5d2')
-    )
-}
-
-'''
+DATABASES = 
 'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('DB_NAME'),     # Replace with the name of your PostgreSQL database
@@ -33,7 +27,7 @@ DATABASES = {
         'PASSWORD': os.environ.get('DB_PASSWORD'),      # Replace with your PostgreSQL password
         'HOST': os.environ.get('DB_HOST'),              # Database server address (default: localhost)
         'PORT': os.environ.get('DB_PORT', '5432'),                   # Port number (default: 5432)
-    }'''
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
