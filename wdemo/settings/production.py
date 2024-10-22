@@ -1,11 +1,19 @@
-from .base import * 
+from .base import *
 import os
 
-DEBUG = True
-ALLOWED_HOSTS = ['https://icprofsensei-github-io.onrender.com', '13.48.45.57', os.getenv('RENDER_EXTERNAL_HOSTNAME'), '']
+DEBUG = False  # Set to False for production
 
+# Update ALLOWED_HOSTS to include your Render domain and EC2 IP address
+ALLOWED_HOSTS = [
+    'icprofsensei-github-io.onrender.com',  # Your Render domain without 'https://'
+    '13.48.45.57',                          # Your EC2 public IP
+    os.getenv('RENDER_EXTERNAL_HOSTNAME'),   # Optional: can be used for Render's external hostname
+]
+
+# Configure static files
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -18,21 +26,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME'),                # Replace with the name of your PostgreSQL database
-        'USER': os.environ.get('DB_USER'),                # Replace with your PostgreSQL username (e.g., 'postgres')
-        'PASSWORD': os.environ.get('DB_PASSWORD'),        # Replace with your PostgreSQL password
-        'HOST': os.environ.get('DB_HOST', 'localhost'),   # Database server address (default: localhost)
-        'PORT': os.environ.get('DB_PORT', '5432'),        # Port number (default: 5432)
+        'NAME': os.environ.get('DB_NAME'),                # Your PostgreSQL database name
+        'USER': os.environ.get('DB_USER'),                # Your PostgreSQL username
+        'PASSWORD': os.environ.get('DB_PASSWORD'),        # Your PostgreSQL password
+        'HOST': os.environ.get('DB_HOST', 'localhost'),   # Use 'localhost' if DB is on the same EC2 instance
+        'PORT': os.environ.get('DB_PORT', '5432'),        # Default PostgreSQL port
     }
 }
 
 # Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -48,34 +53,19 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-
-
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Backend URL for API requests
 BACKEND_URL = os.getenv('BACKEND_URL', 'http://127.0.0.1:8000')
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# Security settings for HTTPS
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP to HTTPS
+SESSION_COOKIE_SECURE = True  # Ensures cookies are only sent over HTTPS
+CSRF_COOKIE_SECURE = True 
