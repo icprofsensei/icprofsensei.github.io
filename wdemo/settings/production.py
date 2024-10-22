@@ -21,7 +21,7 @@ MIDDLEWARE = [
 
 DATABASES = {
     'default': dj_database_url.config(
-        default = os.environ.get('DATABASE_URL', 'postgresql://test_u5d2_user:VTttJP9fL58rFLCD0cJ2Toz0jEkksrBv@dpg-crsidfggph6c738ttku0-a.oregon-postgres.render.com/test_u5d2')
+        default = os.environ.get('DATABASE_URL', 'postgresql://testtep_user:wkszhtPHvj7HfwjBZeE26IYcdYgHo0FZ@dpg-csbu6qjtq21c73a8k0ig-a/testtep')
     )
 }
 
