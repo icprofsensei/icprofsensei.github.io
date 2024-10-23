@@ -5,7 +5,25 @@
 {% block title %}Confirmation{% endblock %}
 {% block content %}
 <h1>Your new party has been created. Voters may now access it</h1>
-
+<p>Here are your content scores for keywords, subjectivity and sentiment</p>
+<table>
+    <tr>
+        <th>Detail</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>Manifesto</td>
+        <td>{{ choice.manifesto_text }}</td>
+    </tr>
+    <tr>
+        <td>Sentiment</td>
+        <td>{{ choice.sentiment }}</td>
+    </tr>
+    <tr>
+        <td>Subjectivity</td>
+        <td>{{ choice.subjectivity }}</td>
+    </tr>
+</table>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 </head>

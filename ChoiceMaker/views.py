@@ -87,4 +87,4 @@ def add_choice(request, question_id):
         return render(request, 'ChoiceMaker/confirmation.html', {'question': question})
 
     # If the request method is GET, render the form
-    return render(request, 'ChoiceMaker/confirmation.html', {'question': question})
+    return render(request, 'ChoiceMaker/partymaker.html', {'question': question})
