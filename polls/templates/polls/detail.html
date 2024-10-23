@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load custom_filters %}
 {% block title %}Vote{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
@@ -42,7 +42,7 @@
                             </tr>
                             <tr>
                                 <td>Key Words</td>
-                                <td>{{ choice.keywords }}</td>
+                                <td>{{ choice.keywords|extract_keywords }}</td>
                             </tr>
                         </tbody>
                     </table>
