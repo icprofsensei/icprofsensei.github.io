@@ -13,13 +13,18 @@
                 <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
                 
                 <select onchange="this.nextElementSibling.style.display = this.value === 'hide' ? 'block' : 'none'">
-                    <option value="show">Hide Manifesto</option>
-                    <option value="hide">Show Manifesto</option>
+                    <option value="show">Hide Manifesto and additional information.</option>
+                    <option value="hide">Show Manifesto and additional information.</option>
                     
                 </select>
                 
                 <div style="display: none;">
-                    <p>{{ choice.manifesto_text }}</p>
+                    <ul>
+                    <li>{{ choice.manifesto_text }}</li>
+                    <li>{{ choice.sentiment }}</li>
+                    <li>{{ choice.subjectivity }}</li>
+                    <li>{{ choice.keywords }}</li>
+                    </ul>
                 </div>
             </div>
         {% endfor %}

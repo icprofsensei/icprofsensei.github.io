@@ -80,7 +80,7 @@ def add_choice(request, question_id):
             )
 
         # Create a new Choice object and associate it with the question
-        choice = Choice(question=question, choice_text=party_name, manifesto_text = manifesto, votes=0, sentiment = sentiment_polarity, subjectivity = sentiment_subjectivity)
+        choice = Choice(question=question, choice_text=party_name, manifesto_text = manifesto, votes=0, sentiment = sentiment_polarity, subjectivity = sentiment_subjectivity, keywords = str(ents))
         choice.save()
 
         # Redirect to the same page or another page, e.g., the question detail view
