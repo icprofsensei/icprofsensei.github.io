@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% block title %}Vote{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
@@ -19,12 +20,32 @@
                 </select>
                 
                 <div style="display: none;">
-                    <ul>
-                    <li>{{ choice.manifesto_text }}</li>
-                    <li>{{ choice.sentiment }}</li>
-                    <li>{{ choice.subjectivity }}</li>
-                    <li>{{ choice.keywords }}</li>
-                    </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Detail</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Manifesto</td>
+                                <td>{{ choice.manifesto_text }}</td>
+                            </tr>
+                            <tr>
+                                <td>Sentiment</td>
+                                <td>{{ choice.sentiment }}</td>
+                            </tr>
+                            <tr>
+                                <td>Subjectivity</td>
+                                <td>{{ choice.subjectivity }}</td>
+                            </tr>
+                            <tr>
+                                <td>Key Words</td>
+                                <td>{{ choice.keywords }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         {% endfor %}

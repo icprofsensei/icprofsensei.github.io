@@ -5,8 +5,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 STATIC_URL = '/static/'
 # Location where Django will collect static files in development
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),  # This points to your project static directory
+    os.path.join(BASE_DIR, 'static'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Collected static files
 # Use SQLite for development
 DATABASES = {
     'default': {

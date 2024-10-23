@@ -84,7 +84,7 @@ def add_choice(request, question_id):
         choice.save()
 
         # Redirect to the same page or another page, e.g., the question detail view
-        return render(request, 'ChoiceMaker/confirmation.html', {'question': question})
+        return render(request, 'ChoiceMaker/confirmation.html', {'question': question, 'choice':choice})
 
     # If the request method is GET, render the form
     return render(request, 'ChoiceMaker/partymaker.html', {'question': question})

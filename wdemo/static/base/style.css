@@ -96,3 +96,60 @@ input.form-control {
     margin-top: 56px; /* Adjust for the height of the fixed navbar */
     padding-left: 300px; /* Same margin-left as main-content to ensure alignment */
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Clean cell borders */
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Table header styling */
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Table cell styling */
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    vertical-align: top; /* Aligns content to the top */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Cell hover effect */
+td:hover {
+    background-color: #f0f0f0; /* Light background change on hover */
+}
+
+/* Optional - make the table more readable */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row background */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #fff; /* Ensure contrast on odd rows */
+}
+
+/* Additional styling for table */
+table {
+    border: 1px solid #ddd; /* Border around the table */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for clean look */
+}
+
+/* Optional: Smooth reveal for the manifesto details */
+div[style="display: none;"] {
+    transition: all 0.5s ease;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+div[style="display: block;"] {
+    opacity: 1;
+    height: auto;
+}
