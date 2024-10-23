@@ -25,6 +25,9 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length = 200)
     votes = models.IntegerField(default=0)
     manifesto_text = models.TextField(null=True, blank=True)  # Optional field for manifestos
+    sentiment = models.DecimalField(max_digits=18, decimal_places=17, null=True, blank=True)  # Sentiment score
+    subjectivity = models.DecimalField(max_digits=18, decimal_places=17, null=True, blank=True)  # Subjectivity score
+
     def __str__(self):
         return self.choice_text
     

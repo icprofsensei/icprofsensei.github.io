@@ -7,6 +7,9 @@ from register.models import UserProfile
 from polls.models import Choice, Question
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
+import spacy
+from textblob import TextBlob
+nlp = spacy.load("en_core_web_sm")
 
 class BaseProtectedView(LoginRequiredMixin):
     login_url = '/login/'  # Redirect to this URL if not authenticated
@@ -56,6 +59,15 @@ def add_choice(request, question_id):
         # Get the input data from the form (field name is 'partyname')
         party_name = request.POST.get('partyname')
         manifesto = request.POST.get('manifesto')
+        doc = nlp(manifesto)
+        blob = TextBlob(manifesto)
+        sentiment_polarity = blob.sentiment.polarity
+        sentiment_subjectivity = blob.sentiment.subjectivity
+        #list of keywords
+        ents = []
+        for ent in doc.ents:
+            ents.append({ent.text, ent.label_})
+        
         if not party_name:
             # If no party name is provided, show an error
             return render(
@@ -68,7 +80,7 @@ def add_choice(request, question_id):
             )
 
         # Create a new Choice object and associate it with the question
-        choice = Choice(question=question, choice_text=party_name, manifesto_text = manifesto, votes=0)
+        choice = Choice(question=question, choice_text=party_name, manifesto_text = manifesto, votes=0, sentiment = sentiment_polarity, subjectivity = sentiment_subjectivity)
         choice.save()
 
         # Redirect to the same page or another page, e.g., the question detail view
