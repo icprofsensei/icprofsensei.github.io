@@ -57,8 +57,6 @@ def register_step_2(request):
             login(request, user)
             messages.success(request, f"Welcome {user.username}!")
 
-            # Store the selected organisation in the session if available
-            request.session['organisation_id'] = organisation.id if organisation else None
             del request.session['registration_data']
             return redirect("/")  # Redirect to home or another page
     else:
@@ -94,8 +92,6 @@ def custom_login(request):
                         messages.error(request, "You are not part of this organisation.")
                         return redirect('login')  # Redirect to login page
 
-                # No organisation or valid organisation, proceed with normal login
-                request.session['organisation_id'] = organisation.id if organisation else None
                 login(request, user)
                 messages.success(request, f"Welcome {user.username}!")
                 
