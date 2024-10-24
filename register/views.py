@@ -9,13 +9,18 @@ def register_step_1(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
-            # Store form data in the session
-            request.session['registration_data'] = form.cleaned_data
+            # Store form data in the session, only save serializable data
+            cleaned_data = form.cleaned_data
+            if isinstance(cleaned_data['organisation'], Organisation):
+                cleaned_data['organisation'] = cleaned_data['organisation'].id  # Store the ID
+
+            request.session['registration_data'] = cleaned_data
             return redirect('register:register_step_2')  # Redirect to step 2 for date_of_birth
     else:
         form = RegisterForm()
-    
+
     return render(request, 'register/register.html', {'form': form})
+
     
 def register_step_2(request):
     if request.method == "POST":
@@ -24,14 +29,21 @@ def register_step_2(request):
             registration_data = request.session.get('registration_data')
             if not registration_data:
                 return redirect('register:register_step_1')
-            # Fetch the selected organisation from the cleaned data
-            organisation = registration_data['organisation']
+
+            # Fetch the organisation instance by ID
+            organisation_id = registration_data.get('organisation')
+            organisation = None
+            if organisation_id:
+                organisation = Organisation.objects.get(id=organisation_id)
+
             dob = form.cleaned_data.get('date_of_birth')
             ethnicity = form.cleaned_data.get('ethnicity')
+            
             # Create the user instance
             if User.objects.filter(username=registration_data['username']).exists():
                 messages.error(request, "Username already exists. Please choose a different username.")
-                return redirect('register:register_step_1')  # Redirect back to registration step 1
+                return redirect('register:register_step_1')
+
             user = User.objects.create_user(
                 username=registration_data['username'],
                 email=registration_data['email'],
@@ -44,14 +56,24 @@ def register_step_2(request):
                 organisation_password = registration_data['organisation_password']
                 if organisation.check_password(organisation_password):
                     # Create the UserProfile associated with the user
-                    user_profile = UserProfile.objects.create(user=user, organisation=organisation, date_of_birth = dob, ethnicity=ethnicity)
+                    user_profile = UserProfile.objects.create(
+                        user=user,
+                        organisation=organisation,
+                        date_of_birth=dob,
+                        ethnicity=ethnicity
+                    )
                     user_profile.save()
                 else:
                     messages.error(request, "Incorrect organisation password.")
-                    return redirect("register:register_step_1")  # Redirect back to registration page
+                    return redirect("register:register_step_1")
             else:
                 # No organisation selected, create the UserProfile without an organisation
-                UserProfile.objects.create(user=user, organisation=None, date_of_birth = dob, ethnicity=ethnicity)
+                UserProfile.objects.create(
+                    user=user,
+                    organisation=None,
+                    date_of_birth=dob,
+                    ethnicity=ethnicity
+                )
 
             # Log the user in
             login(request, user)
@@ -63,6 +85,7 @@ def register_step_2(request):
         form = ExtraInfoForm()
 
     return render(request, "register/register_extrainfo.html", {"form": form})
+
 
 def custom_login(request):
     #Clear previous messages
