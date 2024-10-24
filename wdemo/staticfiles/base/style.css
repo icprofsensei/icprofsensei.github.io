@@ -34,7 +34,12 @@
         flex-direction: column; /* Stack items vertically on smaller screens */
     }
     .sidenav {
-        display: none; /* Hide sidenav on smaller screens */
+        position: absolute; /* Make it absolute to remove it from the flex context */
+        width: 100%; /* Adjust width to 100% for mobile */
+        height: auto; /* Auto height for content */
+        display: block; /* Ensure it is displayed */
+        top: 0; /* Align it to the top */
+        left: 0; /* Align it to the left */
     }
     .form-group {
         margin-top: 10px; /* Reduce margin for mobile */
