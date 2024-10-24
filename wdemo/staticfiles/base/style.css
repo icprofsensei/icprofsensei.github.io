@@ -5,27 +5,27 @@
 
 /* Flexbox for the navigation list */
 .navbar-nav {
-    display: flex;                /* Use flexbox for layout */
-    justify-content: space-around; /* Space items evenly */
-    width: 100%;                 /* Take full width */
-    padding: 0;                  /* Remove default padding */
-    margin: 0;                   /* Remove default margin */
+    display: flex;                
+    justify-content: space-around; 
+    width: 100%;                 
+    padding: 0;                  
+    margin: 0;                   
 }
 
 /* Each nav item */
 .nav-item {
-    flex: 1;                     /* Each item grows equally */
-    text-align: center;          /* Center the text */
+    flex: 1;                     
+    text-align: center;          
 }
 
 /* Ensure that the links take up full width of their containers */
 .nav-link {
     display: block;
-    width: 100%;                 /* Full width for clickable area */
-    padding: 10px;               /* Adjust padding as needed */
-    color: white;                /* Text color */
-    text-decoration: none;       /* Remove underline */
-    white-space: nowrap;         /* Prevent text from wrapping */
+    width: 100%;                 
+    padding: 10px;               
+    color: white;                
+    text-decoration: none;       
+    white-space: nowrap;         
 }
 
 /* Optional: Responsive design */
@@ -36,60 +36,60 @@
     .sidenav {
         display: none; /* Hide sidenav on smaller screens */
     }
-}
-
-.form-group {
-    margin-top: 20px;
-    margin-bottom: 20px;  /* Adjust the value as needed for more/less space */
-}
-
-button[type="submit"] {
-    margin-top: 20px;  /* Adjust the value for spacing above the button */
-}
-
-input.form-control {
-    padding: 20px;  /* Adjust as needed */
+    .form-group {
+        margin-top: 10px; /* Reduce margin for mobile */
+        margin-bottom: 10px;  
+    }
+    button[type="submit"] {
+        margin-top: 10px; /* Reduce spacing for mobile */
+    }
+    input.form-control {
+        padding: 15px;  /* Reduce padding for mobile */
+        font-size: 14px; /* Adjust font size */
+    }
 }
 
 /* The sidebar menu */
 .sidenav {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 160px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
+    height: 100%; 
+    width: 160px; 
+    position: fixed; 
+    z-index: 1; 
+    top: 0; 
     left: 0;
-    background-color: #111; /* Black */
-    overflow-x: hidden; /* Disable horizontal scroll */
+    background-color: #111; 
+    overflow-x: hidden; 
     padding-top: 20px;
-  }
+}
   
-  /* The navigation menu links */
+/* The navigation menu links */
 .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 25px;
     color: #818181;
     display: block;
-  }
+}
   
-  /* When you mouse over the navigation links, change their color */
+/* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
     color: #f1f1f1;
-  }
+}
 
 .main-content {
-    flex: 1; /* Allow the main content to take remaining space */
-    padding: 2px; /* Add padding to the main content */
+    flex: 1; 
+    padding: 2px; 
 }
+
 .container {
-    display: flex; /* Make the container a flex container */
-    flex: 1; /* Allow it to grow to fill available space */
+    display: flex; 
+    flex: 1; 
+    flex-wrap: wrap; /* Allow wrapping of flex items */
 }
 
 table {
     width: 100%;
-    border-collapse: collapse; /* Clean cell borders */
+    border-collapse: collapse; 
     margin: 20px 0;
     font-family: Arial, sans-serif;
 }
@@ -107,29 +107,30 @@ th {
 td {
     padding: 10px;
     border: 1px solid #ddd;
-    vertical-align: top; /* Aligns content to the top */
-    transition: background-color 0.3s ease; /* Smooth hover transition */
+    vertical-align: top; 
+    transition: background-color 0.3s ease; 
 }
 
 /* Cell hover effect */
 td:hover {
-    background-color: #f0f0f0; /* Light background change on hover */
+    background-color: #f0f0f0; 
 }
 
 /* Optional - make the table more readable */
 tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Alternate row background */
+    background-color: #f9f9f9; 
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #fff; /* Ensure contrast on odd rows */
+    background-color: #fff; 
 }
 
 /* Additional styling for table */
 table {
-    border: 1px solid #ddd; /* Border around the table */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for clean look */
+    border: 1px solid #ddd; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
 }
+
 /* Optional: Smooth reveal for the manifesto details */
 div[style="display: none;"] {
     transition: all 0.5s ease;
